@@ -1,0 +1,29 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import { SUBSCRIBE } from "@consts";
+import Subscribe from "@components/Subscribe";
+
+const posts = (await getCollection("blog")).filter((post) => !post.data.draft);
+
+const projects = (await getCollection("projects")).filter(
+    (post) => !post.data.draft,
+);
+
+const data = [...posts, ...projects] as CollectionEntry<"blog">[];
+---
+
+<PageLayout title={SUBSCRIBE.TITLE} description={SUBSCRIBE.DESCRIPTION}>
+    <TopLayout>
+        <div class="animate page-heading">
+            {SUBSCRIBE.TITLE}
+        </div>
+    </TopLayout>
+    <BottomLayout>
+        <div class="animate">
+            <Subscribe client:load />
+        </div>
+    </BottomLayout>
+</PageLayout>
