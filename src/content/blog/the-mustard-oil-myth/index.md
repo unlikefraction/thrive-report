@@ -1,7 +1,7 @@
 ---
 title: "The Mustard Oil Myth—Better Than Refined Oils or a Health Hazard?"
 summary: "Mustard oil has been a staple in South Asian kitchens for centuries. But is it the healthiest option, or should you worry about its risks? Here's the no-nonsense breakdown."
-date: "Feb 21 2025"
+date: "Feb 3 2025"
 draft: false
 tags:
 - Health

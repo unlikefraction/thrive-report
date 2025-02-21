@@ -1,7 +1,7 @@
 ---
 title: "Ghee vs. Butter vs. Olive Oil: Which Fat Reigns Supreme in Indian Kitchens?"
 summary: "A no-nonsense guide to choosing the best cooking fat for Indian kitchens—ghee, butter, or olive oil."
-date: "Feb 21 2025"
+date: "Feb 17 2025"
 draft: false
 tags:
 - Comparison
