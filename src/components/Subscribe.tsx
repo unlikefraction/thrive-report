@@ -1,5 +1,13 @@
+"use client";
+
 import { createSignal, Show } from "solid-js"
 import { MessageSquare, Mail, Loader2, Check } from 'lucide-solid'
+
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
 
 export default function Subscribe() {
   const [selected, setSelected] = createSignal<"whatsapp" | "email">("whatsapp")
@@ -9,6 +17,10 @@ export default function Subscribe() {
     setSelected(type)
     setLoading(true)
     setTimeout(() => setLoading(false), 2000)
+  }
+
+  function gtag(arg0: string, arg1: string, arg2: { event_category: string; event_label: string; }) {
+    throw new Error("Function not implemented.");
   }
 
   return (
@@ -104,18 +116,37 @@ export default function Subscribe() {
           <Show when={selected() === "whatsapp"}>
             <iframe 
               src="https://tally.so/embed/mV41pE?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-              class="w-full h-48 rounded-lg"
+              class="w-full rounded-lg"
+              style={{ height: "300px" }}
               title="Join on WhatsApp"
+              onLoad={() => {
+                if (window.gtag) {
+                  gtag("event", "subscribe_form_viewed", {
+                    event_category: "conversion",
+                    event_label: "whatsapp",
+                  });
+                }
+              }}
             />
           </Show>
 
           <Show when={selected() === "email"}>
             <iframe
               src="https://tally.so/embed/wb6452?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-              class="w-full h-48 rounded-lg"
+              class="w-full rounded-lg"
+              style={{ height: "300px" }}
               title="Join on email"
+              onLoad={() => {
+                if (window.gtag) {
+                  gtag("event", "subscribe_form_viewed", {
+                    event_category: "conversion",
+                    event_label: "email",
+                  });
+                }
+              }}
             />
           </Show>
+
         </div>
       </div>
     </div>

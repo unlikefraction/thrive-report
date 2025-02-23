@@ -10,7 +10,27 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description, image = "/opengraph.png" } = Astro.props;
+const GA_TRACKING_ID = "G-QTSES5TY78";
+const isProduction = Astro.url.hostname !== "localhost"; // Only track in production
 ---
+
+{isProduction && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', "{GA_TRACKING_ID}");
+
+      gtag('event', 'page_view', { page_path: window.location.pathname });
+
+      document.addEventListener("astro:after-swap", () => {
+        gtag('event', 'page_view', { page_path: window.location.pathname });
+      });
+    </script>
+  </>
+)}
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
