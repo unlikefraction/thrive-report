@@ -14,24 +14,6 @@ const GA_TRACKING_ID = "G-QTSES5TY78";
 const isProduction = Astro.url.hostname !== "localhost"; // Only track in production
 ---
 
-{isProduction && (
-  <>
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', "{GA_TRACKING_ID}");
-
-      gtag('event', 'page_view', { page_path: window.location.pathname });
-
-      document.addEventListener("astro:after-swap", () => {
-        gtag('event', 'page_view', { page_path: window.location.pathname });
-      });
-    </script>
-  </>
-)}
-
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -103,4 +85,21 @@ const isProduction = Astro.url.hostname !== "localhost"; // Only track in produc
             ).newDocument.head.querySelectorAll('link[as="font"]'),
         ].forEach((link) => link.remove()),
     );
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTSES5TY78"
+></script>
+<script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-QTSES5TY78");
+
+    gtag("event", "page_view", { page_path: window.location.pathname });
+
+    document.addEventListener("astro:after-swap", () => {
+        gtag("event", "page_view", { page_path: window.location.pathname });
+    });
 </script>
