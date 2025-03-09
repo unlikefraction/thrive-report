@@ -18,3 +18,13 @@ export type Socials = {
   TEXT: string
   HREF: string
 }[]
+
+export {};
+
+declare global {
+  interface Window {
+    Tally?: {
+      loadEmbeds: () => void;
+    };
+  }
+}

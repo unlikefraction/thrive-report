@@ -36,20 +36,30 @@ const next = items[(index + 1) % items.length];
         var d = document,
             w = "https://tally.so/widgets/embed.js",
             v = function () {
-                "undefined" != typeof Tally
-                    ? Tally.loadEmbeds()
-                    : d
-                          .querySelectorAll("iframe[data-tally-src]:not([src])")
-                          .forEach(function (e) {
-                              e.src = e.dataset.tallySrc;
-                          });
+                if (typeof window.Tally !== "undefined") {
+                    window.Tally.loadEmbeds();
+                } else {
+                    d.querySelectorAll(
+                        "iframe[data-tally-src]:not([src])",
+                    ).forEach((e) => {
+                        const iframe = e as HTMLIFrameElement;
+                        if (iframe.dataset) {
+                            iframe.src = iframe.dataset.tallySrc!;
+                        }
+                    });
+                }
             };
-        if ("undefined" != typeof Tally) v();
-        else if (d.querySelector('script[src="' + w + '"]') == null) {
+
+        if (typeof window.Tally !== "undefined") v();
+        else if (d.querySelector(`script[src="${w}"]`) == null) {
             var s = d.createElement("script");
-            (s.src = w), (s.onload = v), (s.onerror = v), d.body.appendChild(s);
+            s.src = w;
+            s.onload = v;
+            s.onerror = v;
+            d.body.appendChild(s);
         }
     </script>
+
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12">
         <a
             href={`/${prev.collection}/${prev.slug}`}
