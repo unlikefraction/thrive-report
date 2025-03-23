@@ -20,7 +20,7 @@ export default function ArrowCard({entry, pill}: Props) {
             {formatDate(entry.data.date)}
           </div>
         </div>
-        <div class="font-semibold mt-3 text-black dark:text-white">
+        <div class="font-semibold mt-3 text-emerald-900 dark:text-white">
           {entry.data.title}
         </div>
 
