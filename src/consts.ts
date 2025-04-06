@@ -51,10 +51,10 @@ export const LINKS: Links = [
     TEXT: "Newsletters", 
     HREF: "/blog", 
   },
-  // { 
-  //   TEXT: "Projects", 
-  //   HREF: "/projects", 
-  // },
+  { 
+    TEXT: "Siddhannam", 
+    HREF: "https://siddhannam.com/", 
+  },
 ]
 
 // Socials
