@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { formatDate, readingTime } from "@lib/utils";
+import { SocialShare } from "astro-social-share";
 
 type Props = {
     entry: CollectionEntry<"projects"> | CollectionEntry<"blog">;
@@ -56,6 +57,10 @@ const repoUrl = collection === "projects" ? data.repoUrl : null;
         >
             <div class="w-full font-medium">Subscribe to newsletter</div>
         </a>
+    </div>
+
+    <div class="share-bar mt-10">
+        <SocialShare />
     </div>
 
     <div class="flex flex-wrap text-sm uppercase mt-12 gap-3 opacity-75">
